@@ -12,6 +12,10 @@
 #define SERVO_PIN 13
 #define UL_SING_PIN 3
 #define UL_RGB_PIN 2
+#define PHOTOSENSITIVE_LEFT_PIN A3
+#define PHOTOSENSITIVE_RIGHT_PIN A4
+#define IR_AVOIDANCE_LEFT_PIN 12
+#define IR_AVOIDANCE_RIGHT_PIN A5
 
 ProtocolParser *mProtocol = new ProtocolParser();
 StarterBot StarterBot(mProtocol, IN1_PIN, IN2_PIN, IN3_PIN, IN4_PIN);
@@ -23,6 +27,7 @@ void setup()
   StarterBot.init();
   StarterBot.SetControlMode(E_ULTRASONIC_FOLLOW_MODE);
   StarterBot.SetRgbUltrasonicPin(UL_SING_PIN, UL_RGB_PIN, SERVO_PIN);
+  StarterBot.SetPhotoInfraredAvoidancePin(IR_AVOIDANCE_LEFT_PIN, IR_AVOIDANCE_RIGHT_PIN, PHOTOSENSITIVE_LEFT_PIN, PHOTOSENSITIVE_RIGHT_PIN);
   StarterBot.SetSpeed(0);
   StarterBot.mRgbUltrasonic->SetServoBaseDegree(90);
   StarterBot.mRgbUltrasonic->SetServoDegree(90);
@@ -31,15 +36,53 @@ void setup()
 
 void UltrasonicFollow()
 {
-  StarterBot.SetSpeed(40);
-  uint16_t UlFrontDistance =  StarterBot.GetUltrasonicValue(FRONT);
- // Serial.println(UlFrontDistance);
+  StarterBot.SetSpeed(50);
+  uint16_t  LeftValue ,RightValue,UlFrontDistance;
+  LeftValue = StarterBot.GetInfraredAvoidanceValue(0);
+  RightValue = StarterBot.GetInfraredAvoidanceValue(1);
+  UlFrontDistance =  StarterBot.GetUltrasonicValue(FRONT);
   delay(10);
-  if (UlFrontDistance < 13) {
+  
+  if ((UlFrontDistance <5)&&(RightValue != IA_THRESHOLD) && (LeftValue != IA_THRESHOLD))
+  {
     StarterBot.GoBack();
-  } else if (UlFrontDistance > 16) {
+  } 
+   else if ((UlFrontDistance <5)&&(RightValue == IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
+  {
+     StarterBot.SetSpeed(70);
+     StarterBot.Drive(40);
+  } 
+  else if ((UlFrontDistance <5)&&(RightValue != IA_THRESHOLD) && (LeftValue == IA_THRESHOLD)) 
+  {
+     StarterBot.SetSpeed(70);
+     StarterBot.Drive(120);
+  } 
+  else if ((UlFrontDistance > 8)&&(RightValue != IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
+  {
     StarterBot.GoForward();
-  } else if (13 <= UlFrontDistance <=16) {
+  } 
+  else if((UlFrontDistance > 8)&&(RightValue == IA_THRESHOLD) && (LeftValue != IA_THRESHOLD))
+  {
+     StarterBot.SetSpeed(70);
+     StarterBot.Drive(15);
+    }
+    else if((UlFrontDistance > 8)&&(RightValue != IA_THRESHOLD) && (LeftValue == IA_THRESHOLD))
+  {
+     StarterBot.SetSpeed(70);
+     StarterBot.Drive(165);
+    }
+     else if ((5 <= UlFrontDistance <=8)&&(RightValue = IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
+  {
+    StarterBot.SetSpeed(70);
+     StarterBot.Drive(10);
+    }
+     else if ((5 <= UlFrontDistance <=8)&&(RightValue = IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
+  {
+    StarterBot.SetSpeed(70);
+     StarterBot.Drive(170);
+    }
+  else if ((5 <= UlFrontDistance <=8)&&(RightValue != IA_THRESHOLD) && (LeftValue = IA_THRESHOLD)) 
+  {
     StarterBot.KeepStop();
     }
 }
