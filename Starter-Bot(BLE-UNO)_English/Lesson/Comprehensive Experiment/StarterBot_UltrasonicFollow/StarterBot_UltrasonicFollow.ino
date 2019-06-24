@@ -57,6 +57,10 @@ void UltrasonicFollow()
      StarterBot.SetSpeed(70);
      StarterBot.Drive(120);
   } 
+  else if ((UlFrontDistance <5)&&(RightValue == IA_THRESHOLD) && (LeftValue == IA_THRESHOLD)) 
+  {
+     StarterBot.GoBack();
+  } 
   else if ((UlFrontDistance > 8)&&(RightValue != IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
   {
     StarterBot.GoForward();
@@ -71,17 +75,17 @@ void UltrasonicFollow()
      StarterBot.SetSpeed(70);
      StarterBot.Drive(165);
     }
-     else if ((5 <= UlFrontDistance <=8)&&(RightValue = IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
+     else if ((5 <= UlFrontDistance <=8)&&(RightValue == IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
   {
     StarterBot.SetSpeed(70);
      StarterBot.Drive(10);
     }
-     else if ((5 <= UlFrontDistance <=8)&&(RightValue = IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
+     else if ((5 <= UlFrontDistance <=8)&&(RightValue != IA_THRESHOLD) && (LeftValue == IA_THRESHOLD)) 
   {
     StarterBot.SetSpeed(70);
      StarterBot.Drive(170);
     }
-  else if ((5 <= UlFrontDistance <=8)&&(RightValue != IA_THRESHOLD) && (LeftValue = IA_THRESHOLD)) 
+  else if ((5 <= UlFrontDistance <=8)&&(RightValue != IA_THRESHOLD) && (LeftValue != IA_THRESHOLD)) 
   {
     StarterBot.KeepStop();
     }
