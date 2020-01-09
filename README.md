@@ -19,6 +19,15 @@ Hummer-Bot is a multi-function car, it is based on the Arduino UNO and the L298N
 * Infrared remote control </br>
 * Bluetooth app control </br>
 * PS2 handle control (optional) </br>
+# APP download
+Android :[Emakefun](http://www.emakefun.com/en/download)</br>
+ISO:[Emakefun](http://www.emakefun.com/en/download)</br>
+
+# Programming software download
+[Arduino IDE software download](https://www.arduino.cc/en/Main/Software?setlang=en)</br>
+[MagicBlock software download ](http://www.emakefun.com/en/download)</br>
+[mBlock 5 software download](https://www.mblock.cc/en-us/download)</br>
+[mBlock 3 software download](https://www.mblock.cc/en-us/download)</br>
 
 
 
