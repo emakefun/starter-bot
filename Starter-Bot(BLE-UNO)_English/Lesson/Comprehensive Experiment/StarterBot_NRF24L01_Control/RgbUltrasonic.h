@@ -5,14 +5,15 @@
 #include <Arduino.h>
 #include "RGBLed.h"
 
-#define UL_LIMIT_MIN 5
-#define UL_LIMIT_MID 10
+#define UL_LIMIT_MIN 12
+#define UL_LIMIT_MID 20
 #define UL_LIMIT_MAX 400
 
 class RgbUltrasonic
 {
   private:
     byte SingPin, RgbPin, ServoPin;
+    unsigned long Time_Echo_us = 0;
     uint8_t ServoBaseDegree;
     
 

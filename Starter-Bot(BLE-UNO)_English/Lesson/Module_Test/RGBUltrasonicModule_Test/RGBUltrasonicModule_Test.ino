@@ -8,6 +8,7 @@
 const int SingPin = 3;
 const int RgbPin = 2;
 float distance;
+unsigned long Time_Echo_us = 0;
 RGBLed mRgb(RgbPin,6);
 void setup() {
   Serial.begin(9600);
@@ -21,16 +22,20 @@ void setup() {
   mRgb.show();
 }
 void loop() {
+  pinMode(SingPin, OUTPUT);
   digitalWrite(SingPin, LOW);
   delayMicroseconds(2);
   digitalWrite(SingPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(SingPin, LOW);
   pinMode(SingPin, INPUT);
-  distance = pulseIn(SingPin, HIGH) / 58.00;
-  Serial.print("distance is :");
-  Serial.print(distance);
-  Serial.print("cm");
-  Serial.println();
-  delay(1000);
+  Time_Echo_us = pulseIn(SingPin, HIGH);
+ if ((Time_Echo_us < 60000) && (Time_Echo_us > 1)) {
+        distance = Time_Echo_us / 58.00;
+        Serial.print("distance is :");
+        Serial.print(distance);
+        Serial.print("cm");
+        Serial.println();  
+    }
+    delay(1000);
 }

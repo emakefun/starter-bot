@@ -13,6 +13,7 @@ class RgbUltrasonic
 {
   private:
     byte SingPin, RgbPin, ServoPin;
+    unsigned long Time_Echo_us = 0;
     uint8_t ServoBaseDegree;
     
 
