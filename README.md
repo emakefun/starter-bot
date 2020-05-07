@@ -1,7 +1,7 @@
 # Please Contact Us
 Technical support email: support@emakefun.com</br>
 Sales email: ken@makefun.com</br>
-The latest information download address:https://github.com/emakefun/starter-bot/edit/master/README.md   </br>
+The latest information download address:https://github.com/emakefun/starter-bot   </br>
 ![](https://github.com/emakefun/hummer-bot)
 # Starter-Bot 
 ![](https://github.com/emakefun/starter-bot/blob/master/Starter-Bot(BLE-UNO)_English/Starter-Bot.JPG)
